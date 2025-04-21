@@ -1,5 +1,11 @@
+import CustomAutocomplete from "./components/CustomAutocomplete";
+
 function App() {
-  return <>home</>;
+  return (
+    <>
+      <CustomAutocomplete />
+    </>
+  );
 }
 
 export default App;
