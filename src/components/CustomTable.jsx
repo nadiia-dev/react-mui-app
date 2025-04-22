@@ -8,6 +8,7 @@ import {
   TableRow,
 } from "@mui/material";
 import Paper from "@mui/material/Paper";
+import { formatDate } from "../heplers/formatDate";
 
 const CustomTable = ({ tasks, onToggle }) => {
   const handleChange = (e, row) => {
@@ -30,13 +31,13 @@ const CustomTable = ({ tasks, onToggle }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {tasks.map((row) => (
+          {tasks.map((row, index) => (
             <TableRow
               key={row.id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.id}
+                {index + 1}
               </TableCell>
               <TableCell align="right">{row.text}</TableCell>
               <TableCell align="right">
@@ -45,7 +46,7 @@ const CustomTable = ({ tasks, onToggle }) => {
                   onChange={(e) => handleChange(e, row)}
                 />
               </TableCell>
-              <TableCell align="right">{row.createdAt}</TableCell>
+              <TableCell align="right">{formatDate(row.createdAt)}</TableCell>
               <TableCell align="right">{row.priority}</TableCell>
             </TableRow>
           ))}
