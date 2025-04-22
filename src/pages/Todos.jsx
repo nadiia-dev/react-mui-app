@@ -1,8 +1,35 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Tab, Tabs, Typography } from "@mui/material";
 import CustomAutocomplete from "../components/CustomAutocomplete";
 import CustomTable from "../components/CustomTable";
 import { useState } from "react";
 import { tasks } from "../data/dummy-data";
+
+function CustomTabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ width: "100%", maxWidth: "1200px", mx: "auto" }}>
+          {children}
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
 
 const Todos = () => {
   const [priority, setPriority] = useState("");
@@ -10,6 +37,11 @@ const Todos = () => {
   const todos = priority
     ? globalTodos.filter((task) => task.priority === priority)
     : globalTodos;
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
     <>
@@ -22,6 +54,8 @@ const Todos = () => {
           gap: "20px",
           justifyContent: "center",
           alignItems: "center",
+          boxSizing: "border-box",
+          minWidth: "100vw",
         }}
       >
         <Typography variant="h1" component="h2" sx={{ fontSize: 36 }}>
@@ -35,8 +69,25 @@ const Todos = () => {
           Filter todos by priority
         </Typography>
         <CustomAutocomplete setPriority={setPriority} priority={priority} />
-        <CustomTable tasks={todos} onToggle={setGlobalTodos} />
       </Box>
+      <Box
+        sx={{
+          borderBottom: 1,
+          borderColor: "divider",
+          marginBottom: "20px",
+        }}
+      >
+        <Tabs value={value} onChange={handleChange}>
+          <Tab label="Todos table" {...a11yProps(0)} />
+          <Tab label="Todos cards" {...a11yProps(1)} />
+        </Tabs>
+      </Box>
+      <CustomTabPanel value={value} index={0}>
+        <CustomTable tasks={todos} onToggle={setGlobalTodos} />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        Item Two
+      </CustomTabPanel>
     </>
   );
 };
