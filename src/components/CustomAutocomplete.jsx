@@ -4,7 +4,7 @@ const CustomAutocomplete = ({ setPriority, priority }) => {
   const options = ["High", "Medium", "Low"];
   return (
     <Autocomplete
-      sx={{ width: 400 }}
+      sx={{ width: { xs: "100%", md: "400px" } }}
       options={options}
       value={priority}
       onChange={(e, newValue) => setPriority(newValue)}

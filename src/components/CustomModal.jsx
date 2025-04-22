@@ -13,6 +13,7 @@ const CustomModal = ({ open, handleClose, curTask }) => {
     pt: 2,
     px: 4,
     pb: 3,
+    width: { xs: "90%", md: "500px" },
   };
 
   return (
@@ -22,7 +23,7 @@ const CustomModal = ({ open, handleClose, curTask }) => {
       aria-labelledby="parent-modal-title"
       aria-describedby="parent-modal-description"
     >
-      <Box sx={{ ...style, width: "full" }}>
+      <Box sx={{ ...style }}>
         <IconButton
           onClick={handleClose}
           sx={{ position: "absolute", top: "10px", right: "10px" }}

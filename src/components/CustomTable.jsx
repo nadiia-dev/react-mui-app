@@ -90,13 +90,21 @@ const CustomTable = ({ tasks, onToggle }) => {
                       data-id={row.id}
                       onClick={(e) => handleOpenModal(e)}
                     >
-                      <EditIcon />
+                      <EditIcon
+                        sx={{
+                          color: (theme) => theme.palette.background.paper,
+                        }}
+                      />
                     </Button>
                     <Button
                       data-id={row.id}
                       onClick={(e) => handleOpenDialog(e)}
                     >
-                      <DeleteIcon />
+                      <DeleteIcon
+                        sx={{
+                          color: (theme) => theme.palette.background.paper,
+                        }}
+                      />
                     </Button>
                   </ButtonGroup>
                 </TableCell>

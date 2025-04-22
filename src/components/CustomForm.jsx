@@ -14,11 +14,11 @@ const CustomForm = ({ curTask }) => {
   const today = new Date();
   const [tasks, setTasks] = useState([]);
   const [formData, setFormData] = useState({
-    id: curTask.id || Math.floor(Math.random() * 1001),
-    text: curTask.text || "",
-    priority: curTask.priority || "",
-    createdAt: curTask.createdAt || today,
-    completed: curTask.completed || false,
+    id: curTask?.id ?? Math.floor(Math.random() * 1001),
+    text: curTask?.text ?? "",
+    priority: curTask?.priority ?? "",
+    createdAt: curTask?.createdAt ?? today,
+    completed: curTask?.completed ?? false,
   });
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const CustomForm = ({ curTask }) => {
           display: "flex",
           flexDirection: "column",
           gap: 2,
-          width: "400px",
+          width: { xs: "100%", md: "400px" },
           mx: "auto",
           marginTop: "20px",
         }}
@@ -74,6 +74,7 @@ const CustomForm = ({ curTask }) => {
             value={formData.text}
             onChange={handleChange}
             required
+            fullWidth
           />
         </FormControl>
         <FormControl>
@@ -85,6 +86,7 @@ const CustomForm = ({ curTask }) => {
             value={formData.priority}
             onChange={handleChange}
             required
+            fullWidth
           >
             <MenuItem value="High">High</MenuItem>
             <MenuItem value="Medium">Medium</MenuItem>

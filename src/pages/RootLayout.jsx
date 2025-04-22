@@ -1,12 +1,17 @@
-import { Box, IconButton, Toolbar, Typography } from "@mui/material";
+import { Box, IconButton, Toolbar, Typography, useTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import { Outlet } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
 import CustomDrawer from "../components/CustomDrawer";
+import { use, useState } from "react";
+import { ColorModeContext } from "../heplers/ColorModeContext";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import BedtimeIcon from "@mui/icons-material/Bedtime";
 
 const RootLayout = () => {
   const [open, setOpen] = useState(false);
+  const theme = useTheme();
+  const { toggleColorMode } = use(ColorModeContext);
 
   const toggleDrawer = () => {
     setOpen((prevState) => !prevState);
@@ -30,6 +35,13 @@ const RootLayout = () => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Menu
             </Typography>
+            <IconButton onClick={toggleColorMode}>
+              {theme.palette.mode === "light" ? (
+                <BedtimeIcon />
+              ) : (
+                <WbSunnyIcon />
+              )}
+            </IconButton>
           </Toolbar>
         </AppBar>
       </Box>

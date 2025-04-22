@@ -1,8 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Todos from "./pages/Todos";
-import CustomForm from "./components/CustomForm";
 import RootLayout from "./pages/RootLayout";
+import AddTodo from "./pages/AddTodo";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
+import { getDesignTokens } from "./heplers/getDesignTokens";
+import { ColorModeContext } from "./heplers/ColorModeContext";
+import { useMemo, useState } from "react";
 
 const router = createBrowserRouter([
   {
@@ -14,14 +19,32 @@ const router = createBrowserRouter([
       { path: "/todos", element: <Todos /> },
       {
         path: "/newTodo",
-        element: <CustomForm />,
+        element: <AddTodo />,
       },
     ],
   },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  const [mode, setMode] = useState("light");
+
+  const colorMode = useMemo(
+    () => ({
+      toggleColorMode: () =>
+        setMode((prevMode) => (prevMode === "light" ? "dark" : "light")),
+    }),
+    []
+  );
+  const theme = createTheme(getDesignTokens(mode));
+
+  return (
+    <ColorModeContext value={colorMode}>
+      <ThemeProvider theme={theme} noSsr>
+        <CssBaseline />
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </ColorModeContext>
+  );
 }
 
 export default App;

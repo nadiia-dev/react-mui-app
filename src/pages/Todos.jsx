@@ -82,7 +82,18 @@ const Todos = () => {
           margin: "20px",
         }}
       >
-        <Tabs value={value} onChange={handleChange}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          sx={{
+            [`&.Mui-selected`]: {
+              color: (theme) => theme.palette.primary.main,
+            },
+            [`&:not(.Mui-selected)`]: {
+              color: (theme) => theme.palette.color.paper,
+            },
+          }}
+        >
           <Tab label="Todos table" {...a11yProps(0)} />
           <Tab label="Todos cards" {...a11yProps(1)} />
         </Tabs>
