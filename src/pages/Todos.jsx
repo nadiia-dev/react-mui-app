@@ -3,6 +3,7 @@ import CustomAutocomplete from "../components/CustomAutocomplete";
 import CustomTable from "../components/CustomTable";
 import { useState } from "react";
 import { tasks } from "../data/dummy-data";
+import CustomCardsGrid from "../components/CustomCardsGrid";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -86,7 +87,7 @@ const Todos = () => {
         <CustomTable tasks={todos} onToggle={setGlobalTodos} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        Item Two
+        <CustomCardsGrid tasks={todos} onToggle={setGlobalTodos} />
       </CustomTabPanel>
     </>
   );

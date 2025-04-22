@@ -19,7 +19,7 @@ const CustomTable = ({ tasks, onToggle }) => {
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
       <Table sx={{ minWidth: 650 }} aria-label="to do list">
         <TableHead>
           <TableRow>
