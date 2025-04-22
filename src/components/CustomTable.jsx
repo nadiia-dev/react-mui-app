@@ -49,6 +49,7 @@ const CustomTable = ({ tasks, onToggle }) => {
     const updatedTodos = tasks.map((task) =>
       task.id === row.id ? { ...task, completed: e.target.checked } : task
     );
+    localStorage.setItem("tasks", JSON.stringify(updatedTodos));
     onToggle(updatedTodos);
   };
 
