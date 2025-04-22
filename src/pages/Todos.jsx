@@ -1,8 +1,7 @@
 import { Box, Tab, Tabs, Typography } from "@mui/material";
 import CustomAutocomplete from "../components/CustomAutocomplete";
 import CustomTable from "../components/CustomTable";
-import { useState } from "react";
-import { tasks } from "../data/dummy-data";
+import { useEffect, useState } from "react";
 import CustomCardsGrid from "../components/CustomCardsGrid";
 
 function CustomTabPanel(props) {
@@ -34,7 +33,12 @@ function a11yProps(index) {
 
 const Todos = () => {
   const [priority, setPriority] = useState("");
-  const [globalTodos, setGlobalTodos] = useState(tasks);
+  const [globalTodos, setGlobalTodos] = useState([]);
+
+  useEffect(() => {
+    setGlobalTodos(JSON.parse(localStorage.getItem("tasks")));
+  }, []);
+
   const todos = priority
     ? globalTodos.filter((task) => task.priority === priority)
     : globalTodos;
@@ -75,7 +79,7 @@ const Todos = () => {
         sx={{
           borderBottom: 1,
           borderColor: "divider",
-          marginBottom: "20px",
+          margin: "20px",
         }}
       >
         <Tabs value={value} onChange={handleChange}>
@@ -87,7 +91,7 @@ const Todos = () => {
         <CustomTable tasks={todos} onToggle={setGlobalTodos} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <CustomCardsGrid tasks={todos} onToggle={setGlobalTodos} />
+        <CustomCardsGrid tasks={todos} />
       </CustomTabPanel>
     </>
   );

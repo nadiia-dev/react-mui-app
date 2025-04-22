@@ -1,14 +1,7 @@
 import { Grid } from "@mui/material";
 import CustomCard from "./CustomCard";
 
-const CustomCardsGrid = ({ tasks, onToggle }) => {
-  const handleChange = (e, row) => {
-    const updatedTodos = tasks.map((task) =>
-      task.id === row.id ? { ...task, completed: e.target.checked } : task
-    );
-    onToggle(updatedTodos);
-  };
-
+const CustomCardsGrid = ({ tasks }) => {
   return (
     <Grid
       container
@@ -19,7 +12,7 @@ const CustomCardsGrid = ({ tasks, onToggle }) => {
     >
       {tasks.map((task) => (
         <Grid key={task.id} item xs={12} sm={6} lg={3}>
-          <CustomCard task={task} handleChange={handleChange} />
+          <CustomCard task={task} />
         </Grid>
       ))}
     </Grid>
