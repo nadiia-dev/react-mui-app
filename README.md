@@ -1,12 +1,36 @@
-# React + Vite
+# React MUI App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a demonstration of how to build a responsive and customizable UI using **Material UI (MUI)** in a React application.
 
-Currently, two official plugins are available:
+## Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The main goal of this project is to explore and practice working with a wide range of MUI components. It is not focused on business logic or advanced features, but rather on learning how to effectively use MUI to create a well-structured and styled application.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Theming**: Custom light and dark mode toggle with personalized colors.
+- **Drawer & AppBar**: Responsive layout with a permanent drawer on desktop and temporary drawer on mobile.
+- **Grid Layout**: Used to structure the layout responsively.
+- **Table**: Displaying a list of tasks using MUI's `Table` component.
+- **Forms**: Including customized `TextField`, `Select`, and `Autocomplete` components.
+- **Validation**: Basic form validation using MUI props like `required`.
+- **Responsive Design**: Uses `theme.breakpoints` to adjust layout for different screen sizes.
+
+## Technologies
+
+- React
+- React Router Dom
+- Material UI (v7)
+
+## Getting Started
+
+```bash
+git clone https://github.com/nadiia-dev/react-mui-app.git
+cd react-mui-app
+npm install
+npm start
+```
+
+## Deployment
+
+The project is deployed via [Vercel](https://vercel.com/)
