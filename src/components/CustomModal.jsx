@@ -1,4 +1,4 @@
-import { Box, IconButton, Modal } from "@mui/material";
+import { Box, IconButton, Modal, Typography } from "@mui/material";
 import CustomForm from "./CustomForm";
 import ClearIcon from "@mui/icons-material/Clear";
 
@@ -30,6 +30,13 @@ const CustomModal = ({ open, handleClose, curTask }) => {
         >
           <ClearIcon />
         </IconButton>
+        <Typography
+          variant="h1"
+          component="h2"
+          sx={{ fontSize: 36, mb: "10px", textAlign: "center" }}
+        >
+          Edit todo
+        </Typography>
         <CustomForm curTask={curTask} />
       </Box>
     </Modal>

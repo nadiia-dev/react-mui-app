@@ -16,9 +16,7 @@ function CustomTabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ width: "100%", maxWidth: "1200px", mx: "auto" }}>
-          {children}
-        </Box>
+        <Box sx={{ maxWidth: "1200px", mx: "auto" }}>{children}</Box>
       )}
     </div>
   );
@@ -60,7 +58,6 @@ const Todos = () => {
           justifyContent: "center",
           alignItems: "center",
           boxSizing: "border-box",
-          minWidth: "100vw",
         }}
       >
         <Typography variant="h1" component="h2" sx={{ fontSize: 36 }}>

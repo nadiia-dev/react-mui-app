@@ -5,10 +5,12 @@ import {
   Table,
   TableBody,
   TableCell,
+  tableCellClasses,
   TableContainer,
   TableHead,
   TableRow,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { formatDate } from "../heplers/formatDate";
 import EditIcon from "@mui/icons-material/Edit";
@@ -16,6 +18,25 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 import CustomDialog from "./CustomDialog";
 import CustomModal from "./CustomModal";
+
+const StyledCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.background.paper,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
 
 const CustomTable = ({ tasks, onToggle }) => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -58,34 +79,36 @@ const CustomTable = ({ tasks, onToggle }) => {
       <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
         <Table sx={{ minWidth: 650 }} aria-label="to do list">
           <TableHead>
-            <TableRow>
-              <TableCell>Id</TableCell>
-              <TableCell align="right">Task</TableCell>
-              <TableCell align="right">Completed</TableCell>
-              <TableCell align="right">CreatedAt</TableCell>
-              <TableCell align="right">Priority</TableCell>
-              <TableCell align="center">Actions</TableCell>
-            </TableRow>
+            <StyledRow>
+              <StyledCell>Id</StyledCell>
+              <StyledCell align="right">Task</StyledCell>
+              <StyledCell align="right">Completed</StyledCell>
+              <StyledCell align="right">CreatedAt</StyledCell>
+              <StyledCell align="right">Priority</StyledCell>
+              <StyledCell align="center">Actions</StyledCell>
+            </StyledRow>
           </TableHead>
           <TableBody>
             {tasks.map((row, index) => (
-              <TableRow
+              <StyledRow
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <StyledCell component="th" scope="row">
                   {index + 1}
-                </TableCell>
-                <TableCell align="right">{row.text}</TableCell>
-                <TableCell align="right">
+                </StyledCell>
+                <StyledCell align="right">{row.text}</StyledCell>
+                <StyledCell align="right">
                   <Checkbox
                     checked={row.completed}
                     onChange={(e) => handleChange(e, row)}
                   />
-                </TableCell>
-                <TableCell align="right">{formatDate(row.createdAt)}</TableCell>
-                <TableCell align="right">{row.priority}</TableCell>
-                <TableCell align="center">
+                </StyledCell>
+                <StyledCell align="right">
+                  {formatDate(row.createdAt)}
+                </StyledCell>
+                <StyledCell align="right">{row.priority}</StyledCell>
+                <StyledCell align="center">
                   <ButtonGroup disableElevation variant="contained">
                     <Button
                       data-id={row.id}
@@ -108,8 +131,8 @@ const CustomTable = ({ tasks, onToggle }) => {
                       />
                     </Button>
                   </ButtonGroup>
-                </TableCell>
-              </TableRow>
+                </StyledCell>
+              </StyledRow>
             ))}
           </TableBody>
         </Table>
